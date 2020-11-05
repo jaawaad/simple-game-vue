@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>{{ title }}</title>
+    <title>Monster Slayer</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/app.css">
@@ -16,7 +16,7 @@
                 <div class="healthbar">
                     <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
                         :style="{ width: playerHealth + '%'}">
-                        {{ playerHealth }}
+                        {{ playerHealth + '%' }}
                     </div>
                 </div>
             </div>
@@ -25,17 +25,17 @@
                 <div class="healthbar">
                     <div class="healthbar text-center" style="background-color: green; margin: 0; color: white;"
                         :style="{ width: monsterHealth + '%'}">
-                        {{ monsterHealth }}
+                        {{ monsterHealth + '%' }}
                     </div>
                 </div>
             </div>
         </section>
         <section class="row controls">
             <div class="small-12 columns">
-                <button id="start-game">START NEW GAME</button>
+                <button id="start-game" @click="runGame()">START NEW GAME</button>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls" v-if="startGame === true">
             <div class="small-12 columns">
                 <button id="attack">ATTACK</button>
                 <button id="special-attack">SPECIAL ATTACK</button>
