@@ -30,24 +30,24 @@
                 </div>
             </div>
         </section>
-        <section class="row controls">
+        <section class="row controls" v-if="!isGamgeRunning">
             <div class="small-12 columns">
-                <button id="start-game" @click="runGame()">START NEW GAME</button>
+                <button id="start-game" @click="startNewGame()">START NEW GAME</button>
             </div>
         </section>
-        <section class="row controls" v-if="startGame === true">
+        <section class="row controls" v-if="isGamgeRunning">
             <div class="small-12 columns">
-                <button id="attack">ATTACK</button>
-                <button id="special-attack">SPECIAL ATTACK</button>
-                <button id="heal">HEAL</button>
-                <button id="give-up">GIVE UP</button>
+                <button @click="attack()" id="attack">ATTACK</button>
+                <button @click="specialAttack()" id="special-attack">SPECIAL ATTACK</button>
+                <button @click="heal()" id="heal">HEAL</button>
+                <button @click="giveUp()" id="give-up">GIVE UP</button>
             </div>
         </section>
-        <section class="row log">
+        <section class="row log" v-if="actionLogs.length">
             <div class="small-12 columns">
                 <ul>
-                    <li>
-
+                    <li v-for="log in actionLogs" :class="{'player-turn' : 1, 'monster-turn' : !log.isPlayer}">
+                        {{ log.text }}
                     </li>
                 </ul>
             </div>
